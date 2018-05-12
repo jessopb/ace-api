@@ -1,39 +1,44 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
 /*
 get, post '/'
 get, patch, delete '/:id'
 */
 
-router.get( '/', (req,res,next)=> {
+router.get('/', (req, res, next) => {
   res.status(200).json({
     message: 'Handling GET requests to / on route /orders'
-  });
-});
+  })
+})
 
-router.post( '/', (req,res,next)=> {
+router.post('/', (req, res, next) => {
+  const order = {
+    produtId: req.body.productId,
+    quantity: req.body.quantity
+  }
   res.status(200).json({
-    message: 'Handling POST requests to / on route /orders'
-  });
-});
+    message: 'Handling POST requests to / on route /orders',
+    order: order
+  })
+})
 
-router.get( '/:orderID', (req,res,next)=> {
+router.get('/:orderID', (req, res, next) => {
   res.status(200).json({
     message: 'GET orderId',
     orderId: req.params.orderId
-  });
-});
+  })
+})
 
-router.patch( '/:orderId', (req,res,next)=> {
+router.patch('/:orderId', (req, res, next) => {
   res.status(200).json({
     message: 'PATCH orderId'
-  });
-});
+  })
+})
 
-router.delete( '/:orderId', (req,res,next)=> {
+router.delete('/:orderId', (req, res, next) => {
   res.status(200).json({
     message: 'DELETE orderId'
-  });
-});
-module.exports = router;
+  })
+})
+module.exports = router
